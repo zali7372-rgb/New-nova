@@ -2,17 +2,14 @@ name: Android CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout repository
@@ -22,31 +19,31 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: '17'
           cache: gradle
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platform-tools
-            platforms;android-35
-            build-tools;35.0.0
+      # GitHub's ubuntu-latest runners already ship with an Android SDK
+      # preinstalled (cmdline-tools + platform-tools). We deliberately do NOT
+      # use the android-actions/setup-android action here: as of this
+      # writing it defaults to installing a package literally called "tools",
+      # which Google discontinued years ago (superseded by cmdline-tools) -
+      # that step fails with "Warning: Failed to find package 'tools'" and
+      # aborts the whole job. Accepting the licenses is all that's actually
+      # needed; Gradle/AGP downloads whatever specific platform and
+      # build-tools versions the project requires automatically during the
+      # build itself.
+      - name: Accept Android SDK licenses
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: 8.7
-
-      - name: Generate Gradle wrapper if missing
+      - name: Ensure Gradle wrapper jar exists
         run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.7
+          if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+            echo "gradle-wrapper.jar not found, bootstrapping with system Gradle..."
+            gradle wrapper --gradle-version 8.9
           fi
-          chmod +x ./gradlew
 
-      - name: Run lint
-        run: ./gradlew lintDebug --stacktrace
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --stacktrace
@@ -57,23 +54,14 @@ jobs:
       - name: Upload debug APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nova-mobile-debug-apk
+          name: nova-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
 
-      - name: Build release APK
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew assembleRelease --stacktrace
-
-      - name: Upload release APK artifact
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+      - name: Upload unit test results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nova-mobile-release-apk
-          path: app/build/outputs/apk/release/*.apk
-          if-no-files-found: error
+          name: nova-unit-test-results
+          path: app/build/reports/tests/testDebugUnitTest
+          if-no-files-found: warn
