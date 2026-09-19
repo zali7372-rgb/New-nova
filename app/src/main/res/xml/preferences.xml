@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/settings_category_voice">
+        <SwitchPreferenceCompat
+            app:key="voice_enabled"
+            app:title="@string/settings_voice_enabled"
+            app:summary="@string/settings_voice_enabled_summary"
+            app:defaultValue="true" />
+        <SwitchPreferenceCompat
+            app:key="continuous_listening_enabled"
+            app:title="@string/settings_continuous_listening"
+            app:summary="@string/settings_continuous_listening_summary"
+            app:defaultValue="false" />
+        <SwitchPreferenceCompat
+            app:key="tts_enabled"
+            app:title="@string/settings_tts_enabled"
+            app:summary="@string/settings_tts_enabled_summary"
+            app:defaultValue="true" />
+        <SwitchPreferenceCompat
+            app:key="wake_word_enabled"
+            app:title="@string/settings_wake_word"
+            app:summary="@string/settings_wake_word_summary"
+            app:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_ai">
+        <ListPreference
+            app:key="ai_provider"
+            app:title="@string/settings_ai_provider"
+            app:entries="@array/ai_provider_labels"
+            app:entryValues="@array/ai_provider_values"
+            app:defaultValue="local"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="api_key_override"
+            app:title="@string/settings_api_key"
+            app:summary="@string/settings_api_key_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_memory">
+        <Preference
+            app:key="open_memory"
+            app:title="@string/settings_view_memory" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_apps">
+        <Preference
+            app:key="open_aliases"
+            app:title="@string/settings_manage_aliases" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/laptop_pairing_title">
+        <Preference
+            app:key="open_laptop_pairing"
+            app:title="@string/laptop_pairing_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_appearance">
+        <SwitchPreferenceCompat
+            app:key="dark_theme_enabled"
+            app:title="@string/settings_dark_theme"
+            app:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_category_about">
+        <Preference
+            app:key="about_nova"
+            app:title="@string/settings_about_nova"
+            app:summary="@string/settings_about_summary"
+            app:selectable="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

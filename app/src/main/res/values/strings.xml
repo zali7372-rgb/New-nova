@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NOVA</string>
+
+    <!-- Status indicators -->
+    <string name="status_online">NOVA ONLINE</string>
+    <string name="status_listening">NOVA HALLGAT</string>
+    <string name="status_thinking">NOVA GONDOLKODIK</string>
+    <string name="status_speaking">NOVA BESZÉL</string>
+    <string name="status_offline">NOVA OFFLINE</string>
+
+    <!-- Main screen -->
+    <string name="mic_button_description">Mikrofon</string>
+    <string name="send_button_description">Küldés</string>
+    <string name="input_hint">Írj üzenetet a NOVA-nak…</string>
+    <string name="mic_permission_denied">A hangvezérléshez engedélyezned kell a mikrofon használatát.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Beállítások</string>
+    <string name="settings_category_voice">Hang</string>
+    <string name="settings_voice_enabled">Hangvezérlés</string>
+    <string name="settings_voice_enabled_summary">Beszédfelismerés és hangparancsok engedélyezése</string>
+    <string name="settings_continuous_listening">Folyamatos beszélgetési mód</string>
+    <string name="settings_continuous_listening_summary">NOVA válasz után is hallgat, nem kell mindig ébresztőszó</string>
+    <string name="settings_tts_enabled">Szövegfelolvasás (TTS)</string>
+    <string name="settings_tts_enabled_summary">NOVA hangosan felolvassa a válaszait</string>
+    <string name="settings_wake_word">Ébresztőszó figyelése háttérben</string>
+    <string name="settings_wake_word_summary">A „Nova” szó folyamatos figyelése egy előtérszolgáltatással</string>
+    <string name="settings_category_ai">AI szolgáltató</string>
+    <string name="settings_ai_provider">AI szolgáltató kiválasztása</string>
+    <string name="settings_api_key">Távoli AI API kulcs</string>
+    <string name="settings_api_key_summary">Saját kulcs megadása (titkosítva tárolva, csak a készüléken)</string>
+    <string name="settings_category_memory">Memória</string>
+    <string name="settings_view_memory">Elmentett emlékek megtekintése</string>
+    <string name="settings_category_apps">Alkalmazás aliasok</string>
+    <string name="settings_manage_aliases">Aliasok kezelése</string>
+    <string name="settings_category_appearance">Megjelenés</string>
+    <string name="settings_dark_theme">Sötét téma</string>
+    <string name="settings_category_about">Névjegy</string>
+    <string name="settings_about_nova">A NOVA-ról</string>
+    <string name="settings_about_summary">Verzió 1.0.0 – Helyi, magyar nyelvű AI asszisztens</string>
+
+    <!-- Memory screen -->
+    <string name="memory_title">Emlékek</string>
+    <string name="memory_empty">Egyelőre nincs elmentett emlék.</string>
+    <string name="memory_delete_all">Összes törlése</string>
+    <string name="memory_delete_one">Törlés</string>
+
+    <!-- Alias manager -->
+    <string name="aliases_title">Alkalmazás aliasok</string>
+    <string name="aliases_empty">Még nincsenek egyéni aliasok.</string>
+    <string name="aliases_add">Alias hozzáadása</string>
+    <string name="aliases_package_hint">Csomagnév (pl. com.discord)</string>
+    <string name="aliases_alias_hint">Alias (pl. discord)</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Mégse</string>
+
+    <!-- Laptop pairing -->
+    <string name="laptop_pairing_title">Laptop mód</string>
+    <string name="laptop_pairing_intro">Nyisd meg a NOVA Desktop appot a laptopodon (Telefon párosítás fül), és add meg itt az ott látható IP címet, portot és PIN kódot.</string>
+    <string name="laptop_pairing_ip_hint">Laptop IP címe (pl. 192.168.1.42)</string>
+    <string name="laptop_pairing_port_hint">Port (alapértelmezett: 8765)</string>
+    <string name="laptop_pairing_pin_hint">PIN kód</string>
+    <string name="laptop_pairing_connect">Csatlakozás</string>
+    <string name="laptop_pairing_disconnect">Szétkapcsolás</string>
+    <string name="laptop_pairing_missing_fields">Add meg az IP címet és a PIN kódot.</string>
+    <string name="laptop_status_disconnected">Nincs kapcsolat a laptoppal.</string>
+    <string name="laptop_status_connecting">Kapcsolódás…</string>
+    <string name="laptop_status_connected">Csatlakozva a laptophoz.</string>
+    <string name="laptop_status_error">Hiba: %1$s</string>
+    <string name="laptop_pairing_route_toggle">Hangvezérlés a laptopra irányítása</string>
+    <string name="laptop_pairing_route_toggle_summary">Ha be van kapcsolva és csatlakozva vagy, a NOVA a laptopon dolgozza fel a kéréseidet, nem a telefonon.</string>
+    <string name="laptop_pairing_mic_toggle">Mikrofon mód (kísérleti)</string>
+    <string name="laptop_pairing_mic_toggle_summary">A telefon a nyers mikrofonhangot streameli a laptopra, ami ott végzi a beszédfelismerést — ehhez internetkapcsolat kell a laptopon. Alapértelmezés szerint a telefon a saját, már felismert szövegét küldi el, ami megbízhatóbb.</string>
+</resources>
